@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D-Printed Medical Device Prototype Design</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0d47a1;
+            --accent: #ff6b35;
+            --bg-dark: #0f1419;
+            --bg-card: #242b3d;
+            --text-primary: #e8eef2;
+            --text-secondary: #b0b9c8;
+            --text-tertiary: #7a8394;
+            --border-color: #2a3245;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-dark) 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .project-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 20, 25, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-back {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .nav-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        main {
+            margin-top: 60px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 3rem 2rem;
+        }
+
+        .project-badge {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background: rgba(255, 107, 53, 0.2);
+            color: var(--accent);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-subtitle {
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+        }
+
+        .project-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .meta-label {
+            color: var(--text-tertiary);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.4rem;
+        }
+
+        .meta-value {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .section {
+            margin: 2.5rem 0;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+            color: var(--text-primary);
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            margin: 1.5rem 0 0.8rem 0;
+            color: var(--accent);
+        }
+
+        p {
+            margin-bottom: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box h4 {
+            color: var(--accent);
+            margin-bottom: 0.8rem;
+        }
+
+        .design-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            padding: 1.3rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-title {
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
+            margin: 2rem 0;
+        }
+
+        .gallery-item {
+            background: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .gallery-placeholder {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, rgba(13, 71, 161, 0.2) 0%, rgba(255, 107, 53, 0.2) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .gallery-caption {
+            padding: 0.8rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin: 1.5rem 0;
+        }
+
+        .tech-tag {
+            padding: 0.5rem 1rem;
+            background: rgba(13, 71, 161, 0.2);
+            color: #1565c0;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid rgba(13, 71, 161, 0.3);
+        }
+
+        .key-outcomes {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .outcome-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .outcome-list li {
+            padding: 0.8rem 0;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .outcome-list li:last-child {
+            border-bottom: none;
+        }
+
+        .outcome-list li::before {
+            content: '✓ ';
+            color: var(--accent);
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        .cta {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2.5rem 0;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.7rem 1.8rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-top: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            padding: 1.5rem;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            margin-top: 2rem;
+            color: var(--text-tertiary);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 2rem 1rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="project-nav">
+        <a href="index.html" class="nav-back">← Back to Portfolio</a>
+        <div class="nav-title">3D Prototype Design</div>
+        <div style="width: 100px;"></div>
+    </nav>
+
+    <main>
+        <div class="project-hero">
+            <span class="project-badge">Design & Prototyping</span>
+            <h1>3D-Printed Medical Device Prototype</h1>
+            <p class="project-subtitle">CAD Design, Design for Manufacturing, and Iterative Prototyping</p>
+            
+            <div class="project-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Type</span>
+                    <span class="meta-value">CAD Design</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Tools</span>
+                    <span class="meta-value">Onshape</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Duration</span>
+                    <span class="meta-value">4 Weeks</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Output</span>
+                    <span class="meta-value">Functional Prototype</span>
+                </div>
+            </div>
+        </div>
+
+        <section class="section">
+            <h2>Project Overview</h2>
+            <p>This project demonstrates practical proficiency in CAD design and modern prototyping methodologies. I designed and fabricated a functional prototype using Onshape CAD software and 3D printing technology. The project showcases the complete design-to-manufacturing workflow, including design for manufacturability (DFM) principles and iterative refinement based on functional testing.</p>
+            
+            <div class="highlight-box">
+                <h4>Objective</h4>
+                <p>Create a functional prototype for a medical device component while optimizing for 3D printing manufacturability. The design needed to balance precision requirements with manufacturing feasibility and cost.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Design Process</h2>
+            
+            <h3>1. Requirements & Specifications</h3>
+            <p>Initial design requirements defined the scope and constraints:</p>
+            <ul style="margin-left: 1.5rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                <li>Dimensional tolerances: ±0.5mm</li>
+                <li>Material compatibility: Biocompatible polymer</li>
+                <li>Assembly compatibility with other components</li>
+                <li>Cost target: &lt;$15 per unit at scale</li>
+                <li>Manufacturability via FDM 3D printing</li>
+            </ul>
+
+            <h3>2. CAD Design & Modeling</h3>
+            <p>Developed detailed 3D CAD model in Onshape with parametric design features, enabling rapid iteration and design modifications. The model included all critical dimensions, assembly interfaces, and manufacturing notes.</p>
+
+            <h3>3. Design for Manufacturability</h3>
+            <p>Applied DFM principles specific to 3D printing technology:</p>
+            <ul style="margin-left: 1.5rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                <li>Minimized support material requirements</li>
+                <li>Optimized wall thickness for print quality</li>
+                <li>Included draft angles for layer adhesion</li>
+                <li>Strategic orientation planning for printing</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Design Features</h2>
+            <div class="design-features">
+                <div class="feature-card">
+                    <div class="feature-icon">📐</div>
+                    <div class="feature-title">Precision Geometry</div>
+                    <div class="feature-desc">Tight tolerances maintained within 3D printing capabilities</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <div class="feature-title">Assembly Interface</div>
+                    <div class="feature-desc">Compatible connector design for modular assembly</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <div class="feature-title">DFM Optimized</div>
+                    <div class="feature-desc">Designed for efficient 3D printing production</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💪</div>
+                    <div class="feature-title">Structural Integrity</div>
+                    <div class="feature-desc">Wall thickness and infill optimized for strength</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Prototyping & Iteration</h2>
+            <p>Multiple prototypes were fabricated and tested to refine the design:</p>
+            
+            <div class="highlight-box">
+                <h4>Prototype v1: Initial Design</h4>
+                <p>First working prototype identified manufacturing challenges with complex geometry. Support material consumption was higher than optimal.</p>
+            </div>
+
+            <div class="highlight-box">
+                <h4>Prototype v2: Design Refinement</h4>
+                <p>Redesigned geometry to reduce support material. Added draft angles and optimized wall thickness. Improved fit with assembly partners.</p>
+            </div>
+
+            <div class="highlight-box">
+                <h4>Prototype v3: Final Optimization</h4>
+                <p>Final iteration validated all tolerances and assembly interfaces. Demonstrated functional performance in application environment. Ready for manufacturing scale-up.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Design & Prototype Gallery</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">🎨</div>
+                    <div class="gallery-caption">CAD Design v1</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">🖨️</div>
+                    <div class="gallery-caption">Prototype 1</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">🔍</div>
+                    <div class="gallery-caption">Tolerance Testing</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">✅</div>
+                    <div class="gallery-caption">Final Prototype</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Technical Tools & Skills</h2>
+            <div class="tech-stack">
+                <span class="tech-tag">Onshape CAD</span>
+                <span class="tech-tag">3D Printing (FDM)</span>
+                <span class="tech-tag">Design for Manufacturing</span>
+                <span class="tech-tag">Tolerance Design</span>
+                <span class="tech-tag">Assembly Design</span>
+                <span class="tech-tag">Prototyping</span>
+                <span class="tech-tag">Iteration & Refinement</span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Key Outcomes & Learning</h2>
+            <div class="key-outcomes">
+                <ul class="outcome-list">
+                    <li>Successfully designed and fabricated functional prototype meeting all design specifications</li>
+                    <li>Demonstrated iterative design methodology with multiple refinement cycles</li>
+                    <li>Applied DFM principles reducing support material and printing time by 40%</li>
+                    <li>Maintained dimensional tolerances within 3D printing capabilities</li>
+                    <li>Validated design for assembly and manufacturability at scale</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="cta">
+            <h3>Practical Design & Prototyping Skills</h3>
+            <p>This project demonstrates hands-on CAD proficiency and understanding of modern prototyping methods. I'm ready to apply these skills to medical device design and development.</p>
+            <a href="index.html#contact" class="btn">Let's Connect</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Apoorva Sunil. All rights reserved.</p>
+    </footer>
+</body>
+</html>

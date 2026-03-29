@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroFit - Shark Tank Innovation Challenge</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0d47a1;
+            --accent: #ff6b35;
+            --bg-dark: #0f1419;
+            --bg-card: #242b3d;
+            --text-primary: #e8eef2;
+            --text-secondary: #b0b9c8;
+            --text-tertiary: #7a8394;
+            --border-color: #2a3245;
+            --success: #4caf50;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-dark) 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .project-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 20, 25, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-back {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .nav-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        main {
+            margin-top: 60px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 3rem 2rem;
+        }
+
+        .project-badge {
+            display: inline-block;
+            padding: 0.6rem 1.2rem;
+            background: rgba(255, 107, 53, 0.2);
+            color: var(--accent);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .project-subtitle {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+        }
+
+        .project-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: var(--bg-card);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .meta-label {
+            color: var(--text-tertiary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .meta-value {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .section {
+            margin: 3rem 0;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem 0;
+            color: var(--accent);
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .highlight-box {
+            background: var(--bg-card);
+            border-left: 4px solid var(--accent);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .highlight-box h4 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .business-model {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .business-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .business-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.15);
+        }
+
+        .business-card h4 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .business-card p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .market-analysis {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin: 2rem 0;
+        }
+
+        .market-stat {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .stat-box {
+            background: rgba(255, 107, 53, 0.1);
+            padding: 1rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .roadmap {
+            margin: 2rem 0;
+        }
+
+        .roadmap-item {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+            border: 1px solid var(--border-color);
+        }
+
+        .roadmap-phase {
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .roadmap-description {
+            color: var(--text-secondary);
+        }
+
+        .challenges-solutions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .challenge-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .challenge-title {
+            color: #ff5252;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .solution-title {
+            color: var(--success);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 2rem 0;
+        }
+
+        .tech-tag {
+            padding: 0.6rem 1.2rem;
+            background: rgba(13, 71, 161, 0.2);
+            color: #1565c0;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(13, 71, 161, 0.3);
+        }
+
+        .cta-section {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            margin-top: 3rem;
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 2rem 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .challenges-solutions {
+                grid-template-columns: 1fr;
+            }
+
+            .market-stat {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="project-nav">
+        <a href="index.html" class="nav-back">← Back to Portfolio</a>
+        <div class="nav-title">NeuroFit Innovation</div>
+        <div style="width: 100px;"></div>
+    </nav>
+
+    <main>
+        <section class="project-hero">
+            <span class="project-badge">Innovation & Strategy</span>
+            <h1>NeuroFit</h1>
+            <p class="project-subtitle">Shark Tank Innovation Challenge: Novel Medical Device Concept</p>
+            
+            <div class="project-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Project Type</span>
+                    <span class="meta-value">Product Innovation</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Duration</span>
+                    <span class="meta-value">8 Weeks</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Role</span>
+                    <span class="meta-value">Team Lead</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Outcome</span>
+                    <span class="meta-value">Competition Showcase</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overview -->
+        <section class="section">
+            <h2>Project Overview</h2>
+            <p>NeuroFit represents an innovative medical device concept developed for the Boston University Shark Tank Innovation Challenge. The project demonstrates entrepreneurial thinking, market opportunity identification, and the ability to develop a compelling business case for a novel healthcare solution. This showcases my understanding of the full product lifecycle from concept through commercialization.</p>
+            
+            <div class="highlight-box">
+                <h4>💡 The Innovation</h4>
+                <p>NeuroFit is a wearable neurorehabilitation device designed to improve motor recovery outcomes in stroke patients and individuals with neuromotor disorders. The device combines EEG monitoring with real-time biofeedback to enhance neuroplasticity and accelerate recovery.</p>
+            </div>
+        </section>
+
+        <!-- Market Opportunity -->
+        <section class="section">
+            <h2>Market Opportunity</h2>
+            <p>Comprehensive market analysis identified a significant opportunity in the neurorehabilitation sector:</p>
+            
+            <div class="market-analysis">
+                <div class="market-stat">
+                    <div class="stat-box">
+                        <div class="stat-value">6.5M</div>
+                        <div class="stat-label">Stroke survivors in US (annual incidence: 795K)</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">$50B</div>
+                        <div class="stat-label">US neurorehabilitation market size</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">8% CAGR</div>
+                        <div class="stat-label">Projected market growth (2023-2030)</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">40%</div>
+                        <div class="stat-label">Current recovery plateau in traditional therapy</div>
+                    </div>
+                </div>
+
+                <h3>Market Gap Analysis</h3>
+                <p>Existing rehabilitation approaches show limitations:</p>
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                    <li>High cost of in-patient rehabilitation programs</li>
+                    <li>Limited access to specialized therapists</li>
+                    <li>Lack of real-time feedback and motivation</li>
+                    <li>Slow recovery plateau beyond 3-6 months post-stroke</li>
+                </ul>
+                <p><strong>NeuroFit addresses these gaps</strong> by providing affordable, accessible, home-based rehabilitation with real-time biofeedback powered by neuroscience.</p>
+            </div>
+        </section>
+
+        <!-- Solution & Value Proposition -->
+        <section class="section">
+            <h2>Solution & Value Proposition</h2>
+            
+            <div class="highlight-box">
+                <h4>🎯 Core Value Proposition</h4>
+                <p><strong>For Patients:</strong> Faster, more effective recovery in the comfort of home with personalized biofeedback. Improved motivation through gamified therapy elements.</p>
+                <p><strong>For Clinicians:</strong> Remote monitoring capability, objective outcome metrics, reduced hospital visits, improved patient engagement.</p>
+                <p><strong>For Healthcare Systems:</strong> Reduced rehabilitation costs, improved outcomes, scalable solution, data-driven therapy optimization.</p>
+            </div>
+
+            <div class="business-model">
+                <div class="business-card">
+                    <h4>🏥 B2B2C Model</h4>
+                    <p>Direct partnerships with rehabilitation clinics and hospitals. Patients use devices under clinical oversight with remote monitoring.</p>
+                </div>
+                <div class="business-card">
+                    <h4>💻 Subscription Service</h4>
+                    <p>Hardware sales + monthly software subscription for biofeedback algorithms, therapy programs, and data analytics.</p>
+                </div>
+                <div class="business-card">
+                    <h4>🏥 Insurance Integration</h4>
+                    <p>Demonstrate improved outcomes to secure insurance reimbursement. Reduce overall rehabilitation costs per patient.</p>
+                </div>
+                <div class="business-card">
+                    <h4>🌍 Scalability</h4>
+                    <p>Licensed technology to international distributors. Expand to other neurological conditions beyond stroke.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Differentiators -->
+        <section class="section">
+            <h2>Technical Differentiators</h2>
+            <p>NeuroFit combines cutting-edge technology with practical clinical design:</p>
+            
+            <div class="tech-stack">
+                <span class="tech-tag">Wearable EEG</span>
+                <span class="tech-tag">Real-time Biofeedback</span>
+                <span class="tech-tag">Machine Learning</span>
+                <span class="tech-tag">Cloud Analytics</span>
+                <span class="tech-tag">Mobile App</span>
+                <span class="tech-tag">Remote Monitoring</span>
+                <span class="tech-tag">Gamification</span>
+                <span class="tech-tag">Data Security</span>
+            </div>
+
+            <h3>Key Technical Features</h3>
+            <div class="highlight-box">
+                <ul style="margin-left: 1.5rem; color: var(--text-secondary);">
+                    <li><strong>Advanced Signal Processing:</strong> Real-time EEG processing with noise filtering and artifact removal</li>
+                    <li><strong>Adaptive Biofeedback:</strong> AI-driven feedback that adapts to patient progress and learning curves</li>
+                    <li><strong>Secure Data Platform:</strong> HIPAA-compliant cloud system for remote monitoring and clinician dashboards</li>
+                    <li><strong>Engagement Mechanics:</strong> Gamified therapy with progress tracking, achievements, and community features</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Go-to-Market Strategy -->
+        <section class="section">
+            <h2>Go-to-Market Strategy</h2>
+            
+            <div class="roadmap">
+                <h3>Phased Launch Roadmap</h3>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-phase">Phase 1: Clinical Validation (Months 1-6)</div>
+                    <div class="roadmap-description">Conduct small-scale clinical trials with 50-100 patients at partner rehabilitation centers. Generate efficacy data for regulatory submission and reimbursement case.</div>
+                </div>
+
+                <div class="roadmap-item">
+                    <div class="roadmap-phase">Phase 2: Regulatory & Reimbursement (Months 6-12)</div>
+                    <div class="roadmap-description">Pursue FDA 510(k) clearance. Submit evidence-based outcomes to insurance providers for coverage determination.</div>
+                </div>
+
+                <div class="roadmap-item">
+                    <div class="roadmap-phase">Phase 3: Market Launch (Months 12-18)</div>
+                    <div class="roadmap-description">Partner with top-tier rehabilitation centers in major US markets. Launch mobile app and cloud analytics platform.</div>
+                </div>
+
+                <div class="roadmap-item">
+                    <div class="roadmap-phase">Phase 4: Scale & Expand (Months 18+)</div>
+                    <div class="roadmap-description">Expand to additional neurological conditions. Pursue international partnerships. Build enterprise sales team.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Business Challenges & Solutions -->
+        <section class="section">
+            <h2>Challenges & Risk Mitigation</h2>
+            <div class="challenges-solutions">
+                <div class="challenge-card">
+                    <div class="challenge-title">Challenge: Regulatory Approval</div>
+                    <p>FDA clearance can be lengthy and complex for novel medical devices.</p>
+                </div>
+                <div class="challenge-card">
+                    <div class="solution-title">Solution: Modular Design</div>
+                    <p>Pursue 510(k) pathway using predicate devices. Phase implementation to de-risk regulatory timeline.</p>
+                </div>
+
+                <div class="challenge-card">
+                    <div class="challenge-title">Challenge: Reimbursement</div>
+                    <p>Insurance companies require strong health economic data to justify coverage.</p>
+                </div>
+                <div class="challenge-card">
+                    <div class="solution-title">Solution: Clinical Evidence</div>
+                    <p>Fund robust clinical trials early. Partner with academic medical centers for credibility.</p>
+                </div>
+
+                <div class="challenge-card">
+                    <div class="challenge-title">Challenge: Market Adoption</div>
+                    <p>Clinicians may be skeptical of home-based rehabilitation efficacy.</p>
+                </div>
+                <div class="challenge-card">
+                    <div class="solution-title">Solution: Education & Data</div>
+                    <p>Demonstrate superior outcomes through published research. Build community of early adopter clinicians.</p>
+                </div>
+
+                <div class="challenge-card">
+                    <div class="challenge-title">Challenge: Competition</div>
+                    <p>Larger medtech companies may enter the space with greater resources.</p>
+                </div>
+                <div class="challenge-card">
+                    <div class="solution-title">Solution: IP Strategy</div>
+                    <p>Patent core algorithms and biofeedback methodologies. Build switching costs through data analytics.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Financial Projections -->
+        <section class="section">
+            <h2>Business Model & Financials</h2>
+            <p><strong>Pricing Strategy:</strong></p>
+            <ul style="margin-left: 1.5rem; color: var(--text-secondary); margin-bottom: 2rem;">
+                <li>Device Cost: $2,500 per unit (hardware)</li>
+                <li>Software Subscription: $150/month per patient</li>
+                <li>Clinician Dashboards: $500/month per clinic</li>
+                <li>Target: 5,000 patients in Year 2, 25,000 by Year 5</li>
+            </ul>
+
+            <div class="stat-box" style="max-width: 100%;">
+                <div class="stat-value">$2M+</div>
+                <div class="stat-label">Projected ARR by Year 3 | Path to profitability within 4 years</div>
+            </div>
+        </section>
+
+        <!-- Key Achievements -->
+        <section class="section">
+            <h2>Project Outcomes</h2>
+            <div class="highlight-box">
+                <h4>✓ Validated Market Opportunity</h4>
+                <p>Conducted comprehensive market analysis identifying $50B+ addressable market with clear unmet needs.</p>
+            </div>
+            <div class="highlight-box">
+                <h4>✓ Compelling Business Case</h4>
+                <p>Developed financial projections, go-to-market strategy, and risk mitigation plan demonstrating viability.</p>
+            </div>
+            <div class="highlight-box">
+                <h4>✓ Innovation Demonstration</h4>
+                <p>Showcased ability to identify white-space opportunities and develop innovative solutions that bridge technology and clinical needs.</p>
+            </div>
+            <div class="highlight-box">
+                <h4>✓ Entrepreneurial Mindset</h4>
+                <p>Demonstrated business development skills, pitch development, and the ability to articulate value to stakeholders.</p>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <h3>Innovation-Driven Medical Device Development</h3>
+            <p>NeuroFit demonstrates my ability to see beyond current solutions, identify market opportunities, and develop innovative medical device concepts with strong business fundamentals. I'm excited to bring this entrepreneurial mindset to your organization.</p>
+            <a href="index.html#contact" class="btn">Contact Me</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Apoorva Sunil. All rights reserved.</p>
+    </footer>
+</body>
+</html>
