@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mind to Motion - IEEE Published EEG Research</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0b1f3b;
+            --primary-light: #1c3d6e;
+            --primary-dark: #08172b;
+            --accent: #d72638;
+            --accent-light: #f25c54;
+            --bg-main: #ffffff;
+            --bg-section: #f8fafc;
+            --bg-card: #ffffff;
+            --text-primary: #0b1f3b;
+            --text-secondary: #4a5568;
+            --text-tertiary: #6b7280;
+            --border-color: #e2e8f0;
+            --success: #2e7d32;
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            background: var(--primary);
+            padding: 1rem 2rem;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-back {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-back:hover { color: var(--accent); }
+
+        .nav-title {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .poster {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: var(--bg-main);
+        }
+
+        .poster-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border-radius: 8px;
+        }
+
+        .ieee-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+
+        .ieee-badge::before {
+            content: '🏆 ';
+        }
+
+        .poster-title {
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .poster-subtitle {
+            font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+            opacity: 0.95;
+        }
+
+        .publication-detail {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.3);
+            font-size: 0.85rem;
+        }
+
+        .pub-item {
+            margin: 0.3rem 0;
+        }
+
+        .pub-label {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .pub-value {
+            color: white;
+            font-weight: 600;
+        }
+
+        .poster-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .poster-section {
+            background: var(--bg-section);
+            padding: 1.5rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .section-content {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .section-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .section-content li {
+            padding: 0.4rem 0 0.4rem 1.5rem;
+            position: relative;
+        }
+
+        .section-content li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .section-content p {
+            margin-bottom: 0.8rem;
+        }
+
+        .section-content strong {
+            color: var(--primary);
+        }
+
+        .poster-section-full {
+            background: var(--bg-section);
+            padding: 1.5rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--accent);
+            margin-bottom: 2rem;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 0.8rem;
+        }
+
+        .result-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 4px;
+            border-top: 3px solid var(--accent);
+            text-align: center;
+        }
+
+        .result-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.4rem;
+        }
+
+        .result-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .methodology-flow {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.8rem;
+            margin-top: 0.8rem;
+        }
+
+        .method-step {
+            background: white;
+            padding: 0.8rem;
+            border-radius: 4px;
+            border-left: 3px solid var(--primary);
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        .method-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .method-text {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.75rem;
+        }
+
+        .brainwave-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            margin-top: 0.8rem;
+        }
+
+        .brainwave-table th {
+            background: var(--primary);
+            color: white;
+            padding: 0.6rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .brainwave-table td {
+            padding: 0.6rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .brainwave-table tr:nth-child(even) { background: white; }
+        .brainwave-table tr:nth-child(odd) { background: rgba(11, 31, 59, 0.02); }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 0.8rem;
+        }
+
+        .tech-tag {
+            background: white;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.3rem 0.6rem;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .contributions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 0.8rem;
+        }
+
+        .contribution-item {
+            background: white;
+            padding: 0.8rem;
+            border-radius: 4px;
+            border-left: 3px solid var(--success);
+            font-size: 0.85rem;
+        }
+
+        .dataset-info {
+            background: white;
+            padding: 0.8rem;
+            border-radius: 4px;
+            border-left: 3px solid var(--accent);
+            font-size: 0.85rem;
+            margin-top: 0.8rem;
+        }
+
+        footer {
+            padding: 1.5rem;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+        }
+
+        @media (max-width: 768px) {
+            .poster { padding: 1rem; }
+            .poster-header { padding: 1.5rem 1rem; margin-bottom: 1.5rem; }
+            .poster-title { font-size: 1.5rem; }
+            .poster-subtitle { font-size: 0.9rem; }
+            .pub-value { font-size: 0.75rem; }
+            .poster-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .results-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+            .methodology-flow { grid-template-columns: 1fr; gap: 0.6rem; }
+            .brainwave-table { font-size: 0.75rem; }
+            .brainwave-table th, .brainwave-table td { padding: 0.4rem; }
+            .contributions { grid-template-columns: 1fr; gap: 0.8rem; }
+            .section-title { font-size: 1rem; }
+            .section-content { font-size: 0.85rem; }
+            .poster-section, .poster-section-full { padding: 1rem; }
+            .result-value { font-size: 1.4rem; }
+        }
+
+        @media (max-width: 480px) {
+            .poster-header { padding: 1rem; }
+            .poster-title { font-size: 1.3rem; }
+            .poster-subtitle { font-size: 0.8rem; }
+            .pub-detail { font-size: 0.7rem; }
+            .results-grid { grid-template-columns: 1fr; }
+            .methodology-flow { grid-template-columns: 1fr; }
+            .brainwave-table { font-size: 0.7rem; }
+            .tech-stack { gap: 0.4rem; }
+            .tech-tag { font-size: 0.7rem; padding: 0.25rem 0.5rem; }
+            .result-value { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <a href="index.html" class="nav-back">← Back to Portfolio</a>
+            <div class="nav-title">Mind to Motion - IEEE Research</div>
+            <div style="width: 150px;"></div>
+        </div>
+    </nav>
+
+    <div class="poster">
+        <div class="poster-header">
+            <div class="ieee-badge">IEEE Published Research</div>
+            <h1 class="poster-title">Mind to Motion</h1>
+            <p class="poster-subtitle">EEG-Based Classification of Motor Imagery and Actual Hand Movements Using LSTM Models</p>
+            
+            <div class="publication-detail">
+                <div class="pub-item">
+                    <div class="pub-label">Published in</div>
+                    <div class="pub-value">2023 Biomedical Engineering International Conference (BMEiCON-2023)</div>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-label">Authors</div>
+                    <div class="pub-value">Apoorva Sunil Chakkamallisery, Yutthana Pititheeraphab, Sonam Tenzin Pelmo, Tasawan Puttasakul, Thanate Angsuwatanakul, Thapanee Khemanuwong</div>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-label">Affiliation</div>
+                    <div class="pub-value">Rangsit University & King Mongkut's Institute of Technology Ladkrabang</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="poster-grid">
+            <div>
+                <div class="poster-section">
+                    <h3 class="section-title">Research Objective</h3>
+                    <div class="section-content">
+                        <p><strong>Problem:</strong> 15% of global population experiences disabilities. Arm amputees constitute ~30% of all amputees worldwide. Current prosthetic limbs lack naturalness and require complex, invasive procedures.</p>
+                        <p><strong>Solution:</strong> Develop EEG-based classification model to distinguish motor imagery from actual hand movements using LSTM deep learning.</p>
+                        <p><strong>Clinical Application:</strong> Enable brain-computer interfaces (BCIs) for intuitive prosthetic arm control and neurorehabilitation technologies.</p>
+                    </div>
+                </div>
+
+                <div class="poster-section" style="margin-top: 1.5rem;">
+                    <h3 class="section-title">Phase 1: EEG Analysis</h3>
+                    <div class="section-content">
+                        <p><strong>Hypothesis:</strong> No significant differences in brain wave activity between motor imagery and real motor actions.</p>
+                        <p><strong>Methodology:</strong></p>
+                        <ul>
+                            <li>21-channel electrode cap acquisition</li>
+                            <li>Time-frequency analysis in EEGLAB</li>
+                            <li>Feature extraction: Mean power & frequency</li>
+                            <li>Analysis across alpha, beta, theta, delta bands</li>
+                        </ul>
+                        <p><strong>Result:</strong> EEG patterns confirmed hypothesis - motor imagery and real actions show similar brain activity.</p>
+                    </div>
+                </div>
+
+                <div class="poster-section" style="margin-top: 1.5rem;">
+                    <h3 class="section-title">Brainwave Frequencies</h3>
+                    <div class="section-content">
+                        <table class="brainwave-table">
+                            <thead>
+                                <tr>
+                                    <th style="font-size: 0.75rem;">Brainwave Type</th>
+                                    <th style="font-size: 0.75rem;">Frequency Band</th>
+                                    <th style="font-size: 0.75rem;">State</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="font-size: 0.8rem;">Beta Wave</td>
+                                    <td style="font-size: 0.8rem;">13-30 Hz</td>
+                                    <td style="font-size: 0.8rem;">Alertness, focused action</td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 0.8rem;">Alpha Wave</td>
+                                    <td style="font-size: 0.8rem;">8-12 Hz</td>
+                                    <td style="font-size: 0.8rem;">Resting state, contemplation</td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 0.8rem;">Theta Wave</td>
+                                    <td style="font-size: 0.8rem;">4-7 Hz</td>
+                                    <td style="font-size: 0.8rem;">Sleep, relaxation</td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 0.8rem;">Delta Wave</td>
+                                    <td style="font-size: 0.8rem;">0.5-3 Hz</td>
+                                    <td style="font-size: 0.8rem;">Deep meditation, sleep</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="poster-section">
+                    <h3 class="section-title">Phase 2: LSTM Classification</h3>
+                    <div class="section-content">
+                        <p><strong>Methodology:</strong> Recurrent Neural Network (LSTM) for sequential EEG data processing.</p>
+                        <p><strong>Dataset:</strong></p>
+                        <ul>
+                            <li>8 EEG channels: Fp1, Fp2, F3, F4, C3, C4, P3, P4</li>
+                            <li>4 tasks: Open-eye visualization, Closed-eye visualization, Physical action, Resting</li>
+                            <li>100 total instances</li>
+                            <li>Train:Test:Validation = 8:1:1 split (80:10:10)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="poster-section" style="margin-top: 1.5rem;">
+                    <h3 class="section-title">LSTM Network Architecture</h3>
+                    <div class="section-content">
+                        <ul>
+                            <li><strong>Sequence Input Layer:</strong> [8×8] matrix processing</li>
+                            <li><strong>2 LSTM Layers:</strong> Hidden units = 28 each</li>
+                            <li><strong>Fully Connected Layer:</strong> Feature consolidation</li>
+                            <li><strong>SoftMax Layer:</strong> Probability distribution</li>
+                            <li><strong>Classification Layer:</strong> Final prediction</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="poster-section" style="margin-top: 1.5rem;">
+                    <h3 class="section-title">Research Results</h3>
+                    <div class="results-grid">
+                        <div class="result-card">
+                            <div class="result-value">62.5%</div>
+                            <div class="result-label">4-Task Accuracy<br>(All states)</div>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-value">75%</div>
+                            <div class="result-label">2-Task Accuracy<br>(Action vs Rest)</div>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-value">8</div>
+                            <div class="result-label">EEG Channels<br>Analyzed</div>
+                        </div>
+                        <div class="result-card">
+                            <div class="result-value">100</div>
+                            <div class="result-label">Total Data<br>Instances</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="poster-section-full">
+            <h3 class="section-title">Experimental Phase Breakdown</h3>
+            <div class="methodology-flow">
+                <div class="method-step">
+                    <div class="method-icon">😴</div>
+                    <div class="method-text"><strong>Resting Phase</strong><br>30 seconds baseline</div>
+                </div>
+                <div class="method-step">
+                    <div class="method-icon">✊</div>
+                    <div class="method-text"><strong>Physical Action</strong><br>Fist make/release cycles</div>
+                </div>
+                <div class="method-step">
+                    <div class="method-icon">💭</div>
+                    <div class="method-text"><strong>Motor Imagery</strong><br>Mental execution (eyes open/closed)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="poster-section-full">
+            <h3 class="section-title">Hardware & Software Setup</h3>
+            <div class="section-content">
+                <p><strong>Hardware:</strong> OpenBCI Cyton Board (8-channel, 250 Hz sampling), 21-channel Ag/AgCl electrode cap, OpenBCI USB Dongle</p>
+                <p><strong>Software:</strong> OpenBCI GUI v5.0.6, MATLAB R2019a, EEGLAB v2022.0, Lab Streaming Layer, App Designer</p>
+                <div class="dataset-info">
+                    <strong>Key Implementation:</strong> MATLAB AppDesigner GUI developed for real-time data visualization and classification testing using Lab Streaming Layer (LSL) for time-synchronized data collection
+                </div>
+            </div>
+        </div>
+
+        <div class="poster-section-full">
+            <h3 class="section-title">Key Research Contributions & Clinical Impact</h3>
+            <div class="contributions">
+                <div class="contribution-item">
+                    <strong>✓ Novel LSTM Application</strong><br>
+                    <span style="font-size: 0.8rem;">First comprehensive LSTM study for EEG motor imagery classification in BCI context</span>
+                </div>
+                <div class="contribution-item">
+                    <strong>✓ Peer-Reviewed Publication</strong><br>
+                    <span style="font-size: 0.8rem;">Published in IEEE BMEiCON-2023 conference, validating research methodology and findings</span>
+                </div>
+                <div class="contribution-item">
+                    <strong>✓ BCI Foundation</strong><br>
+                    <span style="font-size: 0.8rem;">Demonstrated LSTM effectiveness for prosthetic arm control and neurorehabilitation applications</span>
+                </div>
+                <div class="contribution-item">
+                    <strong>✓ Future-Ready Technology</strong><br>
+                    <span style="font-size: 0.8rem;">Pathway toward EEG mind-controlled prosthetic arms for individuals with limb impairments</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="poster-section-full">
+            <h3 class="section-title">Technologies & Signal Processing Methods</h3>
+            <div class="tech-stack">
+                <span class="tech-tag">LSTM Neural Networks</span>
+                <span class="tech-tag">EEG Signal Processing</span>
+                <span class="tech-tag">Time-Frequency Analysis</span>
+                <span class="tech-tag">Feature Extraction</span>
+                <span class="tech-tag">Independent Component Analysis</span>
+                <span class="tech-tag">Fourier Transform</span>
+                <span class="tech-tag">Brain-Computer Interface</span>
+                <span class="tech-tag">Deep Learning</span>
+                <span class="tech-tag">Motor Imagery Classification</span>
+            </div>
+        </div>
+
+        <div class="poster-section-full">
+            <h3 class="section-title">Future Scope & Recommendations</h3>
+            <div class="section-content">
+                <p><strong>Immediate Applications:</strong> Integration with prosthetic arm control systems using real-time LSTM classification for intuitive brain-controlled prosthetics.</p>
+                <p><strong>Critical Next Steps:</strong></p>
+                <ul>
+                    <li>Personalization: Individual user model training (EEG varies significantly between individuals)</li>
+                    <li>Periodic recalibration to account for temporal signal drift</li>
+                    <li>Expansion to multi-user validation studies</li>
+                    <li>Real-world prosthetic integration testing</li>
+                </ul>
+                <p><strong>Long-term Vision:</strong> Seamless EEG-based mind control for individuals with motor impairments, significantly enhancing quality of life and autonomy through advanced BCI technology.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Apoorva Sunil. All rights reserved. | IEEE BMEiCON-2023 Published Research</p>
+    </footer>
+</body>
+</html>

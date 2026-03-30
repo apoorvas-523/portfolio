@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroFit - Medical Device Innovation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0b1f3b;
+            --primary-light: #1c3d6e;
+            --primary-dark: #08172b;
+            --accent: #d72638;
+            --accent-light: #f25c54;
+            --bg-main: #ffffff;
+            --bg-section: #f8fafc;
+            --bg-card: #ffffff;
+            --text-primary: #0b1f3b;
+            --text-secondary: #4a5568;
+            --text-tertiary: #6b7280;
+            --border-color: #e2e8f0;
+            --success: #2e7d32;
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            background: var(--primary);
+            padding: 1rem 2rem;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-back {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-back:hover { color: var(--accent); }
+
+        .nav-title {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .poster {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: var(--bg-main);
+        }
+
+        .poster-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border-radius: 8px;
+        }
+
+        .project-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+
+        .poster-title {
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .poster-subtitle {
+            font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+            opacity: 0.95;
+        }
+
+        .poster-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .poster-section {
+            background: var(--bg-section);
+            padding: 1.5rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .section-content {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .section-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .section-content li {
+            padding: 0.4rem 0 0.4rem 1.5rem;
+            position: relative;
+        }
+
+        .section-content li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .section-content p {
+            margin-bottom: 0.8rem;
+        }
+
+        .poster-section-full {
+            background: var(--bg-section);
+            padding: 1.5rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--accent);
+            margin-bottom: 2rem;
+        }
+
+        .market-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 0.8rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 0.8rem;
+            border-radius: 4px;
+            border-top: 3px solid var(--accent);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .business-model {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+            margin-top: 0.8rem;
+        }
+
+        .model-card {
+            background: white;
+            padding: 0.8rem;
+            border-radius: 4px;
+            border-left: 3px solid var(--primary);
+            font-size: 0.8rem;
+        }
+
+        .model-title {
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .model-desc {
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+        }
+
+        .roadmap {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.8rem;
+            margin-top: 0.8rem;
+        }
+
+        .phase-card {
+            background: white;
+            padding: 0.8rem;
+            border-radius: 4px;
+            border-top: 3px solid var(--primary);
+            text-align: center;
+            font-size: 0.75rem;
+        }
+
+        .phase-number {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .phase-label {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .phase-desc {
+            color: var(--text-secondary);
+            font-size: 0.7rem;
+        }
+
+        .risk-mitigation {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+            margin-top: 0.8rem;
+        }
+
+        .risk-pair {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+        }
+
+        .risk-card {
+            background: white;
+            padding: 0.6rem;
+            border-radius: 4px;
+            border-left: 3px solid #d72638;
+            font-size: 0.75rem;
+        }
+
+        .solution-card {
+            background: white;
+            padding: 0.6rem;
+            border-radius: 4px;
+            border-left: 3px solid var(--success);
+            font-size: 0.75rem;
+        }
+
+        .risk-title, .solution-title {
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+            font-size: 0.75rem;
+        }
+
+        .risk-title { color: #d72638; }
+        .solution-title { color: var(--success); }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 0.8rem;
+        }
+
+        .tech-tag {
+            background: white;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.3rem 0.6rem;
+            border-radius: 3px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .outcomes {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 0.8rem;
+        }
+
+        .outcome-item {
+            background: white;
+            padding: 0.8rem;
+            border-radius: 4px;
+            border-left: 3px solid var(--success);
+            font-size: 0.85rem;
+        }
+
+        footer {
+            padding: 1.5rem;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+        }
+
+        @media (max-width: 768px) {
+            .poster { padding: 1rem; }
+            .poster-header { padding: 1.5rem 1rem; margin-bottom: 1.5rem; }
+            .poster-title { font-size: 1.5rem; }
+            .poster-subtitle { font-size: 0.9rem; }
+            .poster-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .market-stats { grid-template-columns: 1fr; gap: 0.8rem; }
+            .business-model { grid-template-columns: 1fr; gap: 0.6rem; }
+            .roadmap { grid-template-columns: repeat(2, 1fr); gap: 0.6rem; }
+            .risk-mitigation { grid-template-columns: 1fr; gap: 0.6rem; }
+            .risk-pair { grid-template-columns: 1fr; }
+            .outcomes { grid-template-columns: 1fr; gap: 0.8rem; }
+            .section-title { font-size: 1rem; }
+            .section-content { font-size: 0.85rem; }
+            .poster-section, .poster-section-full { padding: 1rem; }
+        }
+
+        @media (max-width: 480px) {
+            .poster-header { padding: 1rem; }
+            .poster-title { font-size: 1.3rem; }
+            .poster-subtitle { font-size: 0.8rem; }
+            .roadmap { grid-template-columns: 1fr; }
+            .tech-stack { gap: 0.4rem; }
+            .tech-tag { font-size: 0.7rem; padding: 0.25rem 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <a href="index.html" class="nav-back">← Back to Portfolio</a>
+            <div class="nav-title">NeuroFit Innovation</div>
+            <div style="width: 150px;"></div>
+        </div>
+    </nav>
+
+    <div class="poster">
+        <div class="poster-header">
+            <div class="project-badge">Innovation Challenge</div>
+            <h1 class="poster-title">NeuroFit</h1>
+            <p class="poster-subtitle">Wearable Neurorehabilitation Device: Market Entry & Business Strategy</p>
+        </div>
+
+        <div class="poster-grid">
+            <div>
+                <div class="poster-section">
+                    <h3 class="section-title">The Opportunity</h3>
+                    <div class="section-content">
+                        <p>Wearable device combining EEG monitoring with real-time biofeedback to improve motor recovery in stroke patients and neuromotor disorders. Addresses critical gaps in affordable, accessible home-based rehabilitation.</p>
+                    </div>
+                </div>
+
+                <div class="poster-section" style="margin-top: 1.5rem;">
+                    <h3 class="section-title">Market Analysis</h3>
+                    <div class="market-stats">
+                        <div class="stat-card">
+                            <div class="stat-value">$50B</div>
+                            <div class="stat-label">TAM (US)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">8%</div>
+                            <div class="stat-label">CAGR</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">6.5M</div>
+                            <div class="stat-label">Stroke Survivors</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="poster-section" style="margin-top: 1.5rem;">
+                    <h3 class="section-title">Competitive Advantages</h3>
+                    <div class="section-content">
+                        <ul>
+                            <li>30-40% cost reduction vs. competitors</li>
+                            <li>Real-time adaptive biofeedback</li>
+                            <li>Strong patent protection</li>
+                            <li>Optimal market timing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="poster-section">
+                    <h3 class="section-title">Business Model</h3>
+                    <div class="business-model">
+                        <div class="model-card">
+                            <div class="model-title">B2B2C</div>
+                            <div class="model-desc">Direct partnerships with rehab clinics and hospitals</div>
+                        </div>
+                        <div class="model-card">
+                            <div class="model-title">Subscription</div>
+                            <div class="model-desc">Software + biofeedback algorithms ($150/mo)</div>
+                        </div>
+                        <div class="model-card">
+                            <div class="model-title">Clinical Data</div>
+                            <div class="model-desc">Remote monitoring and outcomes analytics</div>
+                        </div>
+                        <div class="model-card">
+                            <div class="model-title">Licensing</div>
+                            <div class="model-desc">International partners and distributors</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="poster-section" style="margin-top: 1.5rem;">
+                    <h3 class="section-title">Go-To-Market Roadmap</h3>
+                    <div class="roadmap">
+                        <div class="phase-card">
+                            <div class="phase-number">1</div>
+                            <div class="phase-label">Validation</div>
+                            <div class="phase-desc">Clinical trials (6 mo)</div>
+                        </div>
+                        <div class="phase-card">
+                            <div class="phase-number">2</div>
+                            <div class="phase-label">Regulatory</div>
+                            <div class="phase-desc">FDA clearance (6 mo)</div>
+                        </div>
+                        <div class="phase-card">
+                            <div class="phase-number">3</div>
+                            <div class="phase-label">Launch</div>
+                            <div class="phase-desc">Market entry (6 mo)</div>
+                        </div>
+                        <div class="phase-card">
+                            <div class="phase-number">4</div>
+                            <div class="phase-label">Scale</div>
+                            <div class="phase-desc">Expand markets (12+ mo)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="poster-section" style="margin-top: 1.5rem;">
+                    <h3 class="section-title">Financial Outlook</h3>
+                    <div class="section-content">
+                        <p><strong>Year 1:</strong> $0-5M revenue<br>
+                        <strong>Year 2:</strong> $5-15M revenue<br>
+                        <strong>Year 3:</strong> $15-50M revenue<br>
+                        <strong>Path to profitability:</strong> Year 3-4</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="poster-section-full">
+            <h3 class="section-title">Critical Challenges & Mitigation</h3>
+            <div class="risk-mitigation">
+                <div class="risk-pair">
+                    <div class="risk-card">
+                        <div class="risk-title">⚠ Regulatory Timeline</div>
+                        <div style="font-size: 0.7rem;">FDA clearance delays</div>
+                    </div>
+                    <div class="solution-card">
+                        <div class="solution-title">✓ Modular Design</div>
+                        <div style="font-size: 0.7rem;">510(k) pathway with predicate devices</div>
+                    </div>
+                </div>
+                <div class="risk-pair">
+                    <div class="risk-card">
+                        <div class="risk-title">⚠ Reimbursement</div>
+                        <div style="font-size: 0.7rem;">Insurance approval uncertainty</div>
+                    </div>
+                    <div class="solution-card">
+                        <div class="solution-title">✓ Clinical Evidence</div>
+                        <div style="font-size: 0.7rem;">Robust trials demonstrating ROI</div>
+                    </div>
+                </div>
+                <div class="risk-pair">
+                    <div class="risk-card">
+                        <div class="risk-title">⚠ Market Adoption</div>
+                        <div style="font-size: 0.7rem;">Clinician skepticism of home therapy</div>
+                    </div>
+                    <div class="solution-card">
+                        <div class="solution-title">✓ Education & Data</div>
+                        <div style="font-size: 0.7rem;">Published evidence and KOL partnerships</div>
+                    </div>
+                </div>
+                <div class="risk-pair">
+                    <div class="risk-card">
+                        <div class="risk-title">⚠ Competition</div>
+                        <div style="font-size: 0.7rem;">Larger companies entering space</div>
+                    </div>
+                    <div class="solution-card">
+                        <div class="solution-title">✓ IP Strategy</div>
+                        <div style="font-size: 0.7rem;">Patents on core algorithms and methods</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="poster-section-full">
+            <h3 class="section-title">Key Outcomes & Competencies Demonstrated</h3>
+            <div class="outcomes">
+                <div class="outcome-item">
+                    <strong>✓ Market Opportunity Analysis</strong><br>
+                    <span style="font-size: 0.8rem;">$50B addressable market with clear unmet needs</span>
+                </div>
+                <div class="outcome-item">
+                    <strong>✓ Business Model Design</strong><br>
+                    <span style="font-size: 0.8rem;">Multiple revenue streams and scalability pathways</span>
+                </div>
+                <div class="outcome-item">
+                    <strong>✓ Strategic Planning</strong><br>
+                    <span style="font-size: 0.8rem;">Phased GTM roadmap with risk mitigation</span>
+                </div>
+                <div class="outcome-item">
+                    <strong>✓ Entrepreneurial Thinking</strong><br>
+                    <span style="font-size: 0.8rem;">Innovation-driven approach to medical device development</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="poster-section-full">
+            <h3 class="section-title">Technologies & Tools</h3>
+            <div class="tech-stack">
+                <span class="tech-tag">Wearable EEG</span>
+                <span class="tech-tag">Biofeedback</span>
+                <span class="tech-tag">Machine Learning</span>
+                <span class="tech-tag">Cloud Platform</span>
+                <span class="tech-tag">Mobile App</span>
+                <span class="tech-tag">Remote Monitoring</span>
+                <span class="tech-tag">Data Security</span>
+                <span class="tech-tag">HIPAA Compliance</span>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Apoorva Sunil. All rights reserved.</p>
+    </footer>
+</body>
+</html>
