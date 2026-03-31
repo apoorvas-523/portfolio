@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Other Projects - Apoorva Sunil</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0b1f3b;
+            --accent: #d72638;
+            --accent-light: #f25c54;
+            --bg-main: #ffffff;
+            --bg-section: #f8fafc;
+            --text-primary: #0b1f3b;
+            --text-secondary: #4a5568;
+            --border-color: #e2e8f0;
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: white;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .nav-back {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-back:hover { color: var(--primary); }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        .header {
+            margin-top: 60px;
+            padding: 4rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(11, 31, 59, 0.05) 0%, rgba(215, 38, 56, 0.05) 100%);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .projects-container {
+            padding: 5rem 2rem;
+        }
+
+        .project-section {
+            margin-bottom: 4rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .project-section:hover {
+            box-shadow: 0 10px 30px rgba(215, 38, 56, 0.1);
+        }
+
+        .project-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-details {
+            background: var(--bg-section);
+            padding: 1.5rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .detail-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+
+        .detail-content {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .detail-content ul {
+            margin-top: 0.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .detail-content li {
+            margin-bottom: 0.4rem;
+        }
+
+        .poster-img {
+    width: 500px;
+    height: auto;          /* 🔥 fix */
+    display: block;        /* helps centering */
+    margin: 0 auto;        /* centers the image */
+}
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 1rem;
+        }
+
+        .tech-badge {
+            background: white;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        footer {
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            .project-grid { grid-template-columns: 1fr; }
+            .project-section { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="nav-back">← Back to Home</a>
+        <div class="nav-brand">OTHER PROJECTS</div>
+        <div style="width: 100px;"></div>
+    </nav>
+
+    <!-- Header -->
+    <section class="header">
+        <h1>Additional Projects</h1>
+        <p>Diverse projects demonstrating expertise in AI/ML, software development, design, and business strategy</p>
+    </section>
+
+    <!-- Projects -->
+    <section class="projects-container">
+        <div class="container">
+
+            <!-- Project 1: BLIP Classification -->
+            <div class="project-section" id="blip">
+                <div class="project-badge">AI/ML • Image Classification</div>
+                <h2 class="project-title">BLIP Image Classification</h2>
+                <a href="https://github.com/apoorvas-523/projectDL2025" class="social-link" title="GitHub">Github⚙️</a>
+                <p class="project-description">
+                    Deep learning-based image classification model using BLIP (Bootstrapped Language-Image Pre-training) with Hessian sharpness analysis for improved generalization on unseen data.
+                </p>
+                
+                <img src="Assets/dl2025.png" alt="Conference" class="poster-img">
+
+                <div class="project-grid">
+                    <div class="project-details">
+                        <div class="detail-title">Key Features</div>
+                        <div class="detail-content">
+                            <ul>
+                                <li>Vision-language model fine-tuning</li>
+                                <li>Hessian-based sharpness analysis</li>
+                                <li>Generalization metrics evaluation</li>
+                                <li>Multi-class classification</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="project-details">
+                        <div class="detail-title">Technologies</div>
+                        <div class="detail-content">
+                            <div class="tech-stack">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">PyTorch</span>
+                                <span class="tech-badge">Transformers</span>
+                                <span class="tech-badge">Deep Learning</span>
+                                <span class="tech-badge">GPU Computing</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-details full-width">
+                        <div class="detail-title">Outcomes</div>
+                        <div class="detail-content">
+                            Successfully implemented BLIP model with Hessian sharpness metrics, demonstrating understanding of advanced deep learning concepts, transfer learning, and model robustness evaluation techniques.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+           
+
+            <!-- Project 2: Mask Detection -->
+            <div class="project-section" id="mask">
+                <div class="project-badge">Software • GUI • Image Processing</div>
+                <h2 class="project-title">Mask Detection Application</h2>
+                <a href="https://github.com/apoorvas-523/Mask_Detection_App" class="social-link" title="GitHub">Github⚙️</a>
+                <p class="project-description">
+                    MATLAB App Designer application for real-time mask detection using image processing and machine learning classification algorithms with an intuitive user interface.
+                </p>
+                
+                <img src="Assets/project2.jpeg" alt="Conference" class="poster-img">
+
+                <div class="project-grid">
+                    <div class="project-details">
+                        <div class="detail-title">Features</div>
+                        <div class="detail-content">
+                            <ul>
+                                <li>Real-time camera feed processing</li>
+                                <li>Face detection and masking analysis</li>
+                                <li>User-friendly GUI with App Designer</li>
+                                <li>Confidence metrics and logging</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="project-details">
+                        <div class="detail-title">Technologies</div>
+                        <div class="detail-content">
+                            <div class="tech-stack">
+                                <span class="tech-badge">MATLAB</span>
+                                <span class="tech-badge">App Designer</span>
+                                <span class="tech-badge">Image Processing</span>
+                                <span class="tech-badge">Computer Vision</span>
+                                <span class="tech-badge">GUI Development</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-details full-width">
+                        <div class="detail-title">Outcomes</div>
+                        <div class="detail-content">
+                            Built end-to-end application integrating computer vision, machine learning, and UI design, demonstrating full-stack development capability and practical software engineering skills.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5: GTM Strategy -->
+            <div class="project-section" id="gtm">
+                <div class="project-badge">Business • Strategy • Market Analysis</div>
+                <h2 class="project-title">B2B Go-to-Market Strategy</h2>
+                <p class="project-description">
+                    Comprehensive go-to-market strategy developed for a medical research project including detailed market analysis, customer segmentation, pricing strategy, and business model canvas.
+                </p>
+                
+                <div class="image-placeholder">Image coming soon!</div>
+
+                <div class="project-grid">
+                    <div class="project-details">
+                        <div class="detail-title">Strategic Components</div>
+                        <div class="detail-content">
+                            <ul>
+                                <li>Market opportunity assessment</li>
+                                <li>Competitive landscape analysis</li>
+                                <li>Target customer identification</li>
+                                <li>KOL survey</li>
+                                <li>Go-to-market strategy pitch to the startup CEO</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="project-details">
+                        <div class="detail-title">Business Tools</div>
+                        <div class="detail-content">
+                            <div class="tech-stack">
+                                <span class="tech-badge">Market Research</span>
+                                <span class="tech-badge">Business Model Canvas</span>
+                                <span class="tech-badge">Competitive Analysis</span>
+                                <span class="tech-badge">Financial Modeling</span>
+                                <span class="tech-badge">Strategy Development</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-details full-width">
+                        <div class="detail-title">Outcomes</div>
+                        <div class="detail-content">
+                            Developed comprehensive GTM strategy for an early startup company demonstrating business acumen, market understanding, and ability to think strategically about commercialization valuable for product development and entrepreneurship roles.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Apoorva Sunil. All rights reserved. | <a href="index.html" style="color: var(--accent); text-decoration: none;">Back to Home</a></p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NeuroFit Project</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0b1f3b;
+            --accent: #d72638;
+            --accent-light: #f25c54;
+            --bg-main: #ffffff;
+            --bg-section: #f8fafc;
+            --text-primary: #0b1f3b;
+            --text-secondary: #4a5568;
+            --border-color: #e2e8f0;
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        body {
+            margin: 2rem;
+            font-family: Arial, sans-serif;
+        }
+        nav {
+            position: sticky;
+            top: 0;
+            background: var(--primary);
+            padding: 1rem 2rem;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-back {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-back:hover { color: var(--accent); }
+
+        .nav-title {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        h1 {
+            margin-bottom: 0.3rem;
+        }
+
+        .headline {
+            font-weight: 600;
+            color: #0b1f3b;
+            margin-bottom: 1.5rem;
+        }
+
+        /* 🧠 Problem Card */
+        .problem-card {
+            background: #f9fafb;
+            border-left: 4px solid #0b1f3b;
+            padding: 1.3rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            transition: 0.25s ease;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+        }
+
+        .problem-card h2 {
+    margin: 0 0 0.4rem;
+    font-size: 1rem;
+    color: #0b1f3b; /* your theme blue */
+}
+
+
+        .problem-card p {
+            font-size: 0.9rem;
+            color: #444;
+        }
+
+        /* 📸 Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .gallery-item {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #e5e7eb;
+            background: white;
+            transition: 0.25s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .caption {
+            text-align: center;
+            padding: 0.8rem;
+            font-size: 0.85rem;
+        }
+
+        /* ✏️ Sections */
+        .section {
+            margin-bottom: 1.5rem;
+        }
+
+        .section h2 {
+            font-size: 1rem;
+            color: #0b1f3b;
+            margin-bottom: 0.4rem;
+        }
+
+        .section p {
+            font-size: 0.9rem;
+            color: #444;
+        }
+        footer {
+            padding: 1.5rem;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+        }
+        
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-content">
+            <a href="index.html" class="nav-back">← Back to Portfolio</a>
+            <div class="nav-title">NeuroFit: EEG Wearable for Athletes</div>
+            <div style="width: 150px;"></div>
+        </div>
+    </nav>
+
+    <!-- 🧠 Problem + Need -->
+    <div class="problem-card">
+        <h2>Opportunity</h2>
+        <p>
+            Current EEG wearables focus on wellness and fail in high-motion environments like weightlifting, 
+            leaving athletes without reliable insight into focus and recovery.
+        </p>
+
+        <h2>Solution</h2>
+        <p>
+            NeuroFit is a motion-tolerant EEG wearable designed for strength athletes, enabling real-time focus tracking 
+            and recovery insights through on-device signal processing and multimodal data integration.
+        </p>
+    </div>
+
+    <!-- 📸 GALLERY (2 images) -->
+    <div class="gallery">
+
+        <div class="gallery-item">
+            <img src="Assets/headband.png" alt="Prototype">
+            <div class="caption">Concept Prototype: Gemini*</div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="Assets/Certificate.jpg" alt="Award">
+            <div class="caption">1st Place Pitch Award</div>
+        </div>
+
+    </div>
+
+    <!-- 🧠 Overview -->
+    <div class="section">
+        <h2>Overview</h2>
+        <p>
+            Developed in Fall 2025, NeuroFit explores wearable neurotechnology beyond wellness into athletic performance. 
+            The system combines EEG with motion correction (IMU-based) and on-device AI processing to deliver reliable 
+            brain data during training.
+        </p>
+    </div>
+
+    <!-- ⚙️ Key Features -->
+    <div class="section">
+        <h2>Key Features</h2>
+        <p>
+            Motion artifact correction, real-time focus tracking, EEG-based sleep staging, and integration with 
+            Apple Watch, Garmin, and Oura for a complete recovery dashboard.
+        </p>
+    </div>
+
+    <!-- 🏆 Impact -->
+    <div class="section">
+        <h2>Impact</h2>
+        <p>
+            Positioned as a new category in fitness technology, NeuroFit won 1st place in both rounds of a Shark Tank–style pitch, 
+            validating both technical feasibility and product-market potential.
+        </p>
+    </div>
+
+    <!-- 📈 Product Thinking -->
+    <div class="section">
+        <h2>Product & Strategy</h2>
+        <p>
+            Designed with a consumer wellness positioning to avoid FDA/CE regulatory burden while delivering meaningful 
+            performance insights, supported by scalable business and integration strategy.
+        </p>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Apoorva Sunil. All rights reserved. | <a href="index.html" style="color: var(--accent); text-decoration: none;">Back to Home</a></p>
+    </footer>
+
+</body>
+</html>
